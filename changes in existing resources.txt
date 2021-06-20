@@ -1,0 +1,35 @@
+provider  "aws" {
+  region ="us-east-2"
+  access_key ="AKIAV63CERGJC4TD6YYN"
+  secret_key ="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"
+}
+
+data "aws_vpc" "myfirstvpc" {
+  filter { 
+            name = "tag:name"
+            values = ["MyfirstVPC"]
+ }
+}
+
+data "aws_security_group" "sg" {
+            filter { 
+                     name  = "group-name"
+                     values = ["sg1"]
+}
+
+filter {
+        name = "vpc-id"
+       values = ["${data.aws_security_group.myfirstvpc.id}"]
+}
+}
+ resource "aws_security_group_rule" "rule_update" {
+        type = "ingress"
+        from_port = 443
+         to_port =443
+         protocol ="tcp"
+         cidr_blocks = ["0.0.0.0/0"]
+
+security_group_id = "${data.aws_security_group.sg.id}"
+}
+
+

@@ -1,0 +1,41 @@
+provider  "aws" {
+  region ="us-east-2"
+  access_key ="AKIAV63CERGJC4TD6YYN"
+  secret_key ="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"
+}
+
+resource "aws_security_group" "allow_all" {
+  name = "allow_all"
+  description = "Allow all inbound traffic"
+  vpc_id = "vpc-7bf76510"
+
+  ingress {
+      from_port = 0
+      to_port = 0
+      protocol = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+      from_port = 0
+      to_port = 0
+      protocol = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+      prefix_list_ids = ["pl-12c4e678"]
+  }
+
+tags = { Name ="sg1"
+   }
+
+
+resource "aws_instance" "web" {
+  ami ="ami-0d8d212151031f51c"
+  instance_type ="t2.micro"
+  vpc_security_group_ids = ["${aws_security_group.allow_all.id}"]
+
+tags = {
+Name = "terraform"
+   }
+ }
+}
+

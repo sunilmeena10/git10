@@ -1,0 +1,14 @@
+provider  "aws" {
+  region ="us-east-2"
+  access_key ="AKIAV63CERGJC4TD6YYN"
+  secret_key ="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"
+}
+
+resource "aws_vpc" "myfirstvpc" {
+                cidr_block = "10.0.0.0/16"
+                instance_tenancy = "dedicated"
+
+tags = { Name = "MyfirstVPC"
+ }
+}
+           

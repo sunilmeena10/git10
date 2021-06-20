@@ -1,0 +1,33 @@
+#set variable value in variable.tf and use it in main.tf to define 
+#parameters , for creating and managing infra.
+
+#main.tf
+
+provider  "aws" {
+  region ="us-east-2"
+  access_key ="AKIAV63CERGJC4TD6YYN"
+  secret_key ="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"
+}
+
+resource "aws_s3_bucket" "onebucket" {
+          bucket = "testing-s3-with-terraform"
+          acl = "${var.acl_type}"
+          force_destroy = true
+  
+lifecycle {
+    prevent_destroy = false
+  }
+       
+versioning {
+          enabled = true
+    }
+tags = { Name = "Bucket1"
+         Environment = "Test"
+ }
+}
+
+============
+#variable file 
+#variable "acl_type" {
+#default = "private"
+#}
