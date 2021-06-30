@@ -1,0 +1,51 @@
+#URL -https://www.linuxtechi.com/install-configure-jenkins-on-centos-7-rhel-7/
+
+#Add the Amazon epel repo.
+
+amazon-linux-extras install epel
+
+#install git
+
+yum install git -y
+
+#Add Jenkins Repository - Jenkins package is not available in the default CentOS and RHEL repositories. So we need to add jenkins repository using the beneath commands.
+
+wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+
+#import jenkins key
+
+rpm --import http://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+#Install Jenkins and Java
+
+yum install jenkins java-1.8.0-openjdk –y
+
+#start and enable jenkins service on ec2 linux
+
+systemctl start jenkins
+systemctl enable jenkins
+
+#allow port 80 and 8080 as jenkins listen on 8080 port.
+
+#Access the Jenkins Web portal
+
+http://<Ip-Address-of-your-Server>:8080
+
+
+#enter the secret passwd stored in : /var/log/jenkins/jenkins.log
+
+#install suggested plug in and create an admin account.
+#Configure GitHub project using git plugin in Jenkins.
+#Login to the GitHub and get the Web URL of your project.
+#Login to the Jenkins portal, Click on “New Item”
+#Select the Freestyle Project and Specify the name as per your setup, In my case I putting as “techi_project”
+#Specify the Project Description and Select Git option in Source Code Management Tab and specify the Web URL of your GitHub Project and its credentials. In the Build Tab select the option that suits your setup and then finally click on Apply.
+#In the Next step click on the “Build Now” option from Jenkins Dashboard to pull the GitHub Project Code.
+#Click on the Workspace Option to view Code or files of GitHub Project. Whenever a new code is pushed on the GitHub project it will be automatically push to Jenkins workspace with new versions.
+#we can also view the project workspace from terminal as well.
+
+cd /var/lib/jenkins/workspace/techi_project/
+
+
+
