@@ -1,0 +1,38 @@
+
+
+cd /usr/local/src
+
+wget http://www-us.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
+
+tar -xf apache-maven-3.5.4-bin.tar.gz
+
+mv apache-maven-3.5.4/ apache-maven/
+
+
+#Now we need to configure the environments variables to pre-compiled Apache Maven--
+#---files on our system by creating a configuration file ‘maven.sh’ in the ‘/etc/profile.d’ directory.
+
+cd /etc/profile.d/
+vim maven.sh
+
+#add the below line inside the maven.sh
+-----------------------------
+# Apache Maven Environment Variables
+# MAVEN_HOME for Maven 1 - M2_HOME for Maven 2
+export M2_HOME=/usr/local/src/apache-maven
+export PATH=${M2_HOME}/bin:${PATH}
+------------------------------------
+
+#Now make the ‘maven.sh’ configuration file executable and then load the configuration by running the ‘source’ command.
+
+chmod +x maven.sh
+source /etc/profile.d/maven.sh
+
+mvn -version
+
+
+
+
+
+
+
