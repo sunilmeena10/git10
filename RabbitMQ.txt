@@ -1,0 +1,43 @@
+amazon-linux-extras install epel
+#yum install -y epel-release
+yum install -y erlang
+
+vi /etc/yum.repos.d/rabbitmq.repo
+---------------------------
+[binary-rabbitmq-server]
+name=binary-rabbitmq-rpm
+baseurl=https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.8.19/rabbitmq-server-3.8.19-1.el8.noarch.rpm
+gpgcheck=0
+repo_gpgcheck=0
+enabled=1
+------------------------------------
+yum install -y rebbitmq-server
+
+systemctl stop firewalld
+
+sestatus #if its enforcing then close it by using below command
+
+setenforce 0
+
+systemctl start rabbitmq-server
+systemctl enable rabbitmq-server
+rabbitmq-pulgins lists
+rabbitmq-plugins enable rabbitmq-management
+
+https://ip-address:15672
+
+--------------
+rabbitmqctl add_user username passwdofuser
+
+#set user as admin
+
+rabbitmqctl set_user_tags  username administrator
+
+#permission for user
+rabbitmq set_permissions -p / username ".*" ".*" ".*"
+
+
+
+
+
+
