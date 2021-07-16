@@ -1,0 +1,17 @@
+wget https://releases.hashicorp.com/terraform/1.0.2/terraform_1.0.2_linux_amd64.zip
+
+unzip terraform_1.0.2_linux_amd64.zip
+ls
+mv terraform /usr/local/bin/
+terraform -v
+
+================
+
+command 
+
+main.tf #main configuration file
+
+#terraform init
+#terraform validate
+#terraform apply
+#terraform destroy
