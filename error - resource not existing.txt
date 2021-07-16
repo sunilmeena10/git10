@@ -1,0 +1,7 @@
+if you are using mupltiple resources
+then you should finish first resource via using {
+then you can start second resource 
+also ens this with { 
+if you are going to use third one
+
+#note - new resources use priviouse resources value
