@@ -1,0 +1,196 @@
+ 
+
+install blender 2.9
+install pyhton 3.6 graphically 
+
+install epel repo
+
+install python3-pip
+
+pip3 install -r requirements.txt
+
+
+
+===============================
+
+[root@ip-172-31-41-90 ~]# history
+    1  yum install w
+    2  w
+    3  history
+    4  yum install docker* -y
+    5  history
+    6  mkdir /FloorplanToBlender3d
+    7  cd /FloorplanToBlender3d/
+    8  yum install git* -y
+    9   git init
+   10  yum install git* -y
+   11  yum install git* --skip-broken
+   12  git init
+   13  git clone https://github.com/grebtsew/FloorplanToBlender3d.git
+   14  ls
+   15  cd FloorplanToBlender3d/
+   16  ls
+   17  cd
+   18  pwd
+   19  cd /FloorplanToBlender3d/
+   20  ls
+   21  cd FloorplanToBlender3d/
+   22  ls
+   23  top
+   24  docker build . --tag=floorplan_to_blender:1.0docker build . --tag=floorplan_to_blender:1.0
+   25  docker images
+   26  system
+   27  systemctl start docker
+   28  ls
+   29  cd /FloorplanToBlender3d/
+   30  cd FloorplanToBlender3d/
+   31  ls
+   32  systemctl status docker
+   33  docker iages
+   34  docker images
+   35  docker build . --tag=floorplan_to_blender:1.0
+   36  docker images
+   37   docker run -it floorplan_to_blender:1.0 bash
+   38  python3 create_blender_project_from_floorplan.py
+   39  docker images
+   40  docker containers ls
+   41  docker containers ps
+   42  docker ps -a
+   43  docker run -it floorplan_to_blender:1.0 bash
+   44  docker images
+   45  docker ps -a
+   46  docker rm funny_grothendieck
+   47  docker ps -a
+   48  docker container start 870297eceeaf
+   49  docker ps -a
+   50  docker exec -it 870297eceeaf
+   51  docker attach 870297eceeaf
+   52  docker exec -it 870297eceeaf /bin/bash
+   53  docker ps -a
+   54  docker start 870297eceeaf
+   55  docker exec -it 870297eceeaf /bin/bash
+   56   docker rm -f $(docker ps -aq)
+   57  docker-compose run ftb
+   58  ls
+   59  docker-compose -f docker-compose.server.yml up
+   60  docker ps -a
+   61  docker imagees
+   62  docker images
+   63  docker container l
+   64  docker build . --tag=floorplan_to_blender:1.0
+   65  history
+   66  docker build . --tag=floorplan_to_blender:1.0
+   67  cd /FloorplanToBlender3d/FloorplanToBlender3d/
+   68  docker build . --tag=floorplan_to_blender:1.0
+   69  docker ps -a
+   70  docker images
+   71  docker rmi a19b62932162
+   72  docker images
+   73  docker run -it floorplan_to_blender:1.0 bash
+   74  docker ps -a
+   75  docker start 1d69fc9bc504
+   76  sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+   77  sudo chmod +x /usr/local/bin/docker-compose
+   78  docker-compose --version
+   79   docker-compose run ftb
+   80  ls
+   81  cd /FloorplanToBlender3d//FloorplanToBlender3d/
+   82  ls
+   83  docker ps -a
+   84   docker-compose run ftb
+   85  cd /FloorplanToBlender3d/FloorplanToBlender3d/
+   86  docker ps -a
+   87  docker  rm 85fda1284593
+   88  docker container stop 85fda1284593
+   89   docker-compose -f docker-compose.server.yml up
+   90  cd /FloorplanToBlender3d/FloorplanToBlender3d/
+   91  ls
+   92  cd /FloorplanToBlender3d/FloorplanToBlender3d/
+   93  docker ps -a
+   94  docker rm 1a261f161e1a 701fae97e326 85fda1284593
+   95  dockeer ccontainer stop 1a261f161e1a 701fae97e326
+   96  docker ccontainer stop 1a261f161e1a 701fae97e326
+   97  docker container stop 1a261f161e1a 701fae97e326
+   98  docker rm  1a261f161e1a 701fae97e326
+   99  docker-compose -f docker-compose.server.yml up --weave=false
+  100  docker ps -a
+  101  docker-compose -f docker-compose.server.yml up
+  102  vi docker-compose.server.yml
+  103  docker ps -a
+  104  docker rm d3da0da7c532 cc0c4352a329
+  105  docker-compose -f docker-compose.server.yml up
+  106  yum update -y
+  107  which docker
+  108  which git
+  109  ls
+  110  pwd
+  111  cd /FloorplanToBlender3d/
+  112  ls
+  113  cd FloorplanToBlender3d/
+  114  ls
+  115  cd /FloorplanToBlender3d/FloorplanToBlender3d/
+  116  ls
+  117  docker ps -a
+  118  ls -al
+  119  cd ./Docs
+  120   docker-compose up
+  121  cd /FloorplanToBlender3d/FloorplanToBlender3d/
+  122  docker ps -a
+  123   docker rm -f $(docker ps -aq)
+  124   docker-compose -f docker-compose.server.yml up
+  125   docker rm -f $(docker ps -aq)
+  126  vi docker-compose.server.yml
+  127   docker-compose -f docker-compose.server.yml up
+  128  watch docker ps -a
+  129  cd /FloorplanToBlender3d/FloorplanToBlender3d/
+  130  docker ps -a
+  131  docker stop 871ce29ae6e1 9f116133c058
+  132  docker rm  871ce29ae6e1 9f116133c058
+  133  vi docker-compose.server.yml
+  134  docker-compose -f docker-compose.server.yml up
+  135  cd /FloorplanToBlender3d/FloorplanToBlender3d/
+  136  docker ps -a
+  137  docker rm dc1c29c6ac86
+  138  docker container stop dc1c29c6ac86
+  139  docker ps -a
+  140  docker rm dc1c29c6ac86
+  141  docker ps -a
+  142   docker rm -f $(docker ps -aq)
+  143  watch docker ps -a
+  144  history
+  145  cd /FloorplanToBlender3d/
+  146  ls
+  147  cd FloorplanToBlender3d/
+  148  docker ps -a
+  149  ls
+  150  history
+  151  cd ./Docs
+  152  ls
+  153  docker-compose up
+  154  reboot
+  155  cd /FloorplanToBlender3d/
+  156  ls
+  157  cd FloorplanToBlender3d
+  158  ls
+  159  ./Docs/
+  160  ./Docs
+  161  ls
+  162  docker-compose up
+  163  cd ./Docs
+  164  ls
+  165  docker-compose up
+  166  systemctl status docker.
+  167  systemctl status docker
+  168  systemctl start docker
+  169  systemctl status docker
+  170  systemctl enable  docker
+  171  docker-compose up
+  172  watch docker ps -a
+  173  cd /FloorplanToBlender3d/FloorplanToBlender3d/
+  174  ls
+  175  vi  docker-compose.server.yml
+  176  cd /FloorplanToBlender3d/FloorplanToBlender3d/
+  177  ls
+  178  cat create_blender_project_from_floorplan.py
+  179  docker ps -a
+  180  history

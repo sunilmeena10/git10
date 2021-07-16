@@ -1,0 +1,39 @@
+
+
+What is Ec2?
+What is feature of Ec2?
+Difference between instance storage volume and Elastic storage volume (EBS).
+What is AMI?
+	An Amazon Machine Image (AMI) is a template that contains a software configuration (for example, an operating system, an application server, and applications). From an AMI, you launch an instance, which is a copy of the AMI running as a virtual server in the cloud. You can launch multiple instances of an AMI.
+How many type of Instances?
+	General purpose
+	Compute optimized
+	Memory optimized
+	Storage optimized
+	GPU innstance
+What  is difference between snapshot and AMI image?
+How many type purchase option in Ec2 innstance?
+What is EC2 Tenancy models?
+What is instance metadata?
+How many type of EBS volume?
+	General Purpose SSD (gp2)
+        Provisioned IOPS SSD (io1)
+	Throughput Optimized HDD (st1)
+	Cold HDD (sc1)
+	Magnetic Volumes (standard) (Previous Generation)
+
+How to check the instance Status Checks?
+What is Elastic Load Balancer?
+	1.	Elastic Load Balancing allows the incoming traffic to be distributed automatically across multiple healthy EC2 instances
+How many type of loadbalancer?
+How many type of the target?
+	Instance, IP, Lambda Function
+
+
+
+
+
+
+
+
+

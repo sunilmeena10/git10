@@ -1,0 +1,14 @@
+Installation:
+
+The recommendation for installing the AWS CLI is to use the bundled installer provided by AWS. The bundled installer includes all dependencies required for the installation.
+
+1. To begin the installation run the following command:
+
+curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+2. Next, you must unzip the downloaded package from step 1:
+
+unzip awscli-bundle.zip
+3. Once the package in unzipped, you can run the installation:
+
+sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+Using the -b option allows all users to use the AWS CLI from any directory, meaning you will not need to specify the install directory in the user’s $PATH variable. 

@@ -1,0 +1,54 @@
+# git URL - https://github.com/s3fs-fuse/s3fs-fuse/blob/master/README.md
+
+
+AKIAW5LNREWLBFFDTSVD - access key
+
+YcqUJcKOi34h6oisYZX8ulSOblkydublxKuOrAjG -sec
+
+
+arn:aws:s3:ap-south-1:475360470422:accesspoint/connected-india-bucketaccess-point
+
+
+arn:aws:s3:::connected-india-mydb-bukcet
+
+
+
+#1. install s3fs utility 
+
+amazon-linux-extras install epel
+yum install s3fs-fuse
+
+#s3fs supports the standard AWS credentials file stored in ${HOME}/.aws/credentials. Alternatively, s3fs supports a custom passwd file.
+
+
+
+#echo AKIAW5LNREWLBFFDTSVD:YcqUJcKOi34h6oisYZX8ulSOblkydublxKuOrAjG > ${HOME}/.passwd-s3fs
+
+#use below command
+
+echo AKIAW5LNREWLJKNAUON7:DTreaHiMPBeZMK5cWC6ssSFT+UmbPjuHEuLkk0Y1 > ~/.passwd-s3fs
+
+chmod 600 ~/.passwd-s3fs
+
+#now mount
+
+s3fs mybucket /path/to/mountpoint -o passwd_file=~/.passwd-s3fs
+
+
+
+#
+
+
+
+#add fstab
+#echo s3fs#connected-india-mydb-bukcet /var/www/html/app/uploads fuse _netdev,rw,nosuid,nodev,allow_other,nonempty 0 0 >> /etc/fstab
+
+
+s3fs connected-india-mydb-bukcet /var/www/html/app/uploads -o passwd_file=~/.passwd-s3fs
+
+##If you encounter any errors, enable debug output:
+
+##s3fs mybucket /path/to/mountpoint -o passwd_file=${HOME}/.passwd-s3fs -o dbglevel=info -f -o curldbg
+
+#to mount nonempty folder/directory use flag :   -o nonempty
+

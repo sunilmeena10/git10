@@ -1,0 +1,93 @@
+
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
+
+
+
+##use this command only
+
+## you have to mentioned --custom-data file://cloud-init.txt ( file://yourfilelocation )
+
+##To specify user data when you launch your instance, use the run-instances command with the --user-data parameter. With run-instances, the AWS CLI performs base64 encoding of the user data for you.
+
+##The following example shows how to specify a script as a string on the command line:
+
+aws ec2 run-instances --image-id ami-abcd1234 --count 1 --instance-type m3.medium \
+--key-name my-key-pair --subnet-id subnet-abcd1234 --security-group-ids sg-abcd1234 \
+--user-data echo user data
+
+aws ec2 run-instances --image-id ami-abcd1234 --count 1 --instance-type m3.medium \
+--key-name my-key-pair --subnet-id subnet-abcd1234 --security-group-ids sg-abcd1234 \
+--user-data file://my_script.txt
+
+
+The following is an example text file with a shell script.
+
+#!/bin/bash
+yum update -y
+service httpd start
+chkconfig httpd on
+
+
+
+
+============================
+
+#for example of you want to add data with the machine creation to run a custom bash script.
+
+so file must be writen like below format.
+
+
+vi cloud-init.txt 
+
+#edit this file as per your requirement.
+
+e.g : make bash shell scritp like below 
+
+*********************
+
+#!/bin/bash
+
+yum update -y
+yum install httpd*
+systemctl start httpd
+systemctl enable https
+service httpd start
+chkconfig httpd on
+
+*******************
+
+So whenever to try to build new vm its comes up with the httpd( web server ) service. its just a example.
+
+
+-------------------------------------------------------------------------------------------------------------
+
+
+##you can also check user data and download it with your browser.
+
+# make this below entry in your cloud-init.text file ,thhis belwo scritp install LAMP server in your VM while new VM creation. this is also a example.
+
+***********************************************************
+#!/bin/bash
+yum update -y
+yum install -y lamp-mariadb10.2-php7.2 php7.2
+yum install -y httpd mariadb-server
+systemctl start httpd
+systemctl enable httpd
+usermod -a -G apache ec2-user
+chown -R ec2-user:apache /var/www
+chmod 2775 /var/www
+find /var/www -type d -exec chmod 2775 {} \;
+find /var/www -type f -exec chmod 0664 {} \;
+echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
+
+**********************************************************
+
+
+##you can use this below URL in web browser to check the completion of above things and you also can download it. use this below command.
+
+
+http://my.public.dns.azurecloud.com/phpinfo.php
+
+
+

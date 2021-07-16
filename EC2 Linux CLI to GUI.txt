@@ -1,0 +1,69 @@
+Before you begin
+1.    Connect to your instance as EC2-user using SSH.
+
+The instance must be in a public subnet and accessible through a public IP address or an Elastic IP address. Or, you can establish a connection using AWS VPN or AWS Direct Connect that allows you to access your instance through a private IP. These instructions don't apply to environments using a bastion host. For security reasons, traffic to the VNC server is tunneled using SSH. It's a best practice to avoid opening VNC ports in your security groups.
+
+2.    Update your instance by running sudo yum update, and then reboot the instance. Failure to update and reboot can lead to unpredictable results when following the steps below.
+
+Install the MATE desktop environment
+1.    Install MATE packages.
+
+sudo amazon-linux-extras install mate-desktop1.x
+2.    Define MATE as your default desktop.
+
+To define MATE for all users:
+
+sudo bash -c 'echo PREFERRED=/usr/bin/mate-session > /etc/sysconfig/desktop'
+To define MATE for the current user only (ec2-user):
+
+echo "/usr/bin/mate-session" > ~/.Xclients && chmod +x ~/.Xclients
+Install TigerVNC
+1.    Install TigerVNC packages:
+
+sudo yum install tigervnc-server
+2.    Configure a VNC-specific password containing 6 to 8 characters for this user. When asked if you want to enter a view-only password, press "n".
+
+vncpasswd
+3.    Start the VNC Server on display number 1.
+
+Enter the following command to start the VNC Server only once:
+
+Note: Entering this command prevents the service from coming up after a reboot.
+
+vncserver :1
+Enter the following commands to always start the VNC Server at boot time:
+
+Create a new systemd unit.
+
+sudo cp /lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service
+Use the sed command to replace all occurrences of USER in the new unit with ec2-user.
+
+sudo sed -i 's/<USER>/ec2-user/' /etc/systemd/system/vncserver@.service
+Reload the systemd manager configuration.
+
+sudo systemctl daemon-reload
+Enable the service.
+
+sudo systemctl enable vncserver@:1
+Start the service.
+
+sudo systemctl start vncserver@:1
+Connect to the GUI using the VNC
+1.    Install the TigerVNC software on your local computer, if it's not already installed. TigerVNC is available for Linux, Windows, and macOS. See the TigerVNC website to access the download.
+
+2.    On your local computer, use SSH to connect to your instance while creating a tunnel to forward all traffic on local port 5901/TCP (VNC) to the instance's VNC server:
+
+Connect to your instance using SSH.
+
+Use the -L parameter to enable port forwarding. Replace PEM_FILE with the path for your private key. Replace INSTANCE_IP with your instance's public or private IP, as appropriate.
+
+ssh -L 5901:localhost:5901 -i PEM_FILE ec2-user@INSTANCE_IP
+
+eg:  ssh -L 5901:172.31.41.90:5901 -i   ~/.ssh/authorized_keys  ec2-user@publiIP	
+Open the connection.
+
+3.    Open the VNC Client on your local computer. When asked for the VNC server hostname, enter localhost:1 and then connect to it.
+
+4.    Enter the VNC password you set up in step 2 of the Install TigerVNC section. If an alert appears stating that the connection isn't secure, disregard it. Although VNC data is unencrypted by default, you're accessing the VNC server using an encrypted SSH tunnel.
+
+Your MATE desktop environment appears.
