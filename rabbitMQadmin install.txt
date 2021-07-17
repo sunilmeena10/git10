@@ -1,0 +1,16 @@
+#install Rabbitmqadmin from github 
+
+
+wget https://raw.githubusercontent.com/rabbitmq/rabbitmq-management/v3.7.8/bin/rabbitmqadmin
+chmod 777 rabbitmqadmin
+  
+# now edit rabbitmq file and add python3 in place of python
+
+vi rabbitmqadmin
+
+#move file in application installation folder
+  
+mv rabbitmqadmin /usr/local/bin/
+  
+rabbitmqadmin -H 65.2.33.235  -u admin  -p 123  list vhosts
+ 
