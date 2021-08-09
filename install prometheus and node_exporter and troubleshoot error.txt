@@ -1,0 +1,41 @@
+error
+
+● prometheus.service - Prometheus
+   Loaded: loaded (/etc/systemd/system/prometheus.service; enabled; vendor preset: disabled)
+   Active: failed (Result: exit-code) since Mon 2021-08-09 19:45:07 UTC; 2s ago
+  Process: 28285 ExecStart=/usr/local/bin/prometheus --config.file /etc/prometheus/prometheus.yml --storage.tsdb.path /var/lib/prometheus/ --web.console.templates=/etc/prometheus/consoles --web.console.libraries=/etc/prometheus/console_libraries (code=exited, status=2)
+ Main PID: 28285 (code=exited, status=2)
+
+======================================================
+
+1) you must have node_exporter to another node as well which you want to monitor with prometheus
+2) On node/another server - node_exporter must be running on different port , to change default port check below.
+
+add this line --web... inside = etc/systemd/system/node_exporter.service
+
+ExecStart=/usr/local/bin/node_exporter --web.listen-address=:9101
+
+## resatrt service 
+
+3) now we need to add this node inform in main server inside prometheus.yml - like below 
+
+  - job_name: '15.207.89.237'
+    static_configs:
+    - targets: ['localhost:9100']
+
+  - job_name: '13.235.8.181'
+    static_configs:
+    - targets: ['13.235.8.181:9101']
+
+4) after adding above things , restat prometheus , if prome is not up then check .yml parameter and it must be above one.
+
+5) we have other utility to check .yml error
+
+#promtool check config /etc/prometheus/prometheus.yml
+
+##//it will give error if have , otherwise give SUCCESS flag
+
+--------------------------------------------------------------------
+
+
+Install Prometheus and node_export on serevr( master node )
