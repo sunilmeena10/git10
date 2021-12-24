@@ -18,7 +18,8 @@ resource "aws_instance" "web" {
                echo "this web server" > /var/www/html/index.html
                systemctl start httpd
                EOF
-tags = { Name = "web-server"
+tags = { 
+Name = "web-server"
   }
 }
 
