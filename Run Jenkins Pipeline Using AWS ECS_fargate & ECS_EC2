@@ -34,3 +34,5 @@ SAVE
 click on build now from dashboard
 it will take time, go ECS cluster and check there will be new task running.
 
+you need to put subnets , SG , auto assign IP if your cluster is EC2+networking not fargate one, follow all above remaining steps as same.
+
