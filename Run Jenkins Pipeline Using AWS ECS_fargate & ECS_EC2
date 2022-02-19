@@ -1,0 +1,36 @@
+install jenkins on server and start jenkins server using public IP http://publicIP:8080
+access jenkis and go to manage jenkins > manage plugin > availabel plugin > search for ECS and insatll it 
+now again go to jenkins dashboard > manage jenkins > manage cloud > configure cloud -
+-------------
+now go to AWS IAM role and create new role ( ECS full access and assign that role to EC2 install from where our jenkins server oparate because jenkins needs your AWS creads so instead provide creds we will provide ECS access to EC2 server 
+now  go to EC2 server and action > security role > modify IAM role and > assign EC2 that new role.
+now we need to create cluster so go to ECS > create cluster > 
+from point no 3 mentioned Amazon ECS Region Name "ap-south-1" and it will automatically take newly created cluster
+click on ADVANCED tab and you will see one option "Tunnel connection through" to configure this you need to open another jenkins dashboard
+now go to manage jenkins > Configure Global Security > agent ( in the bottom ) TCP port for inbound agent << it means when you run a pipline on ECS fargate so you will send a query on fargare this is inbound things for AWS so for this we will have configure this all stuff
+choose fixed port "50000" << whatever port>>
+in tunnel connection fill publicIP:inboundport <<12.12.12.12:50000>> like this NOTE: 50000 PORT MUST BE ADD IN EC2 AS WELL
+at the end of point 3 > you will ECS agent template > in the LABLE we targate where build should run > and similer put template name "ECSagenttamplate"
+now select launch type , now we are doing it on fargate so, launch type should be fargate , select soft, hard memory and CPU units.
+SELECT SUBNET OF DEFAULT VPC OR CREATE CLUSTER WITH NEW VPC SO YOU WILL GET NEW SUBNETS AND FILL IN THE BOX <<ALL SUBNETS>>
+now create new security in aws with under same VPC as cluster has, allow 8080 tcp port in inbound rule of SG.
+past the new SG ID in jenkins cloud configuration option.
+check auto assign IP box
+SAVE
+go to new itme from dashboard > cretae new piplien and put some sample in the script box.
+---------
+pipeline {
+    agent { label 'ecsAgent'}
+    stages {
+        stage('Runnin Build') {
+             steps {
+            echo "running in ECS! success"
+         }
+        }    
+       }
+    }
+-----------------  
+SAVE
+click on build now from dashboard
+it will take time, go ECS cluster and check there will be new task running.
+
